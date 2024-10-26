@@ -9,6 +9,7 @@ import androidx.compose.ui.UiComposable
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.viewinterop.NoOpUpdate
 import io.github.u1tramarinet.android13app.ui.queryThemeAttrResId
+import io.github.u1tramarinet.android13app.ui.theme.LocalAndroidViewTheme
 
 @Composable
 @UiComposable
@@ -17,11 +18,11 @@ fun <T : View> ThemedAndroidView(
     factory: (context: Context) -> T,
     update: ((T) -> Unit) = NoOpUpdate
 ) {
+    val defaultThemeResId = LocalAndroidViewTheme.current.themeResId
     AndroidView(
         modifier = modifier,
         factory = { context ->
-            val styleRes = context.queryThemeAttrResId()
-                ?: io.github.u1tramarinet.android13app.R.style.Theme_Android13App
+            val styleRes = context.queryThemeAttrResId() ?: defaultThemeResId
             val themedContext = ContextThemeWrapper(context, styleRes)
             factory(themedContext)
         },

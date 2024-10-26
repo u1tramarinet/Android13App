@@ -7,12 +7,13 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.DeviceFontFamilyName
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
+import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -106,3 +107,6 @@ private fun Android13BaseAppTheme(
         content = content
     )
 }
+
+val LocalAndroidViewTheme =
+    compositionLocalOf { AndroidViewTheme(themeResId = io.github.u1tramarinet.android13app.R.style.Theme_Android13App) }

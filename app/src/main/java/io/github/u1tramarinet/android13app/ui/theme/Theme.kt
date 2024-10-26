@@ -1,7 +1,5 @@
 package io.github.u1tramarinet.android13app.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -10,6 +8,11 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.DeviceFontFamilyName
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
+import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -21,27 +24,74 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
 )
 
 @Composable
 fun Android13AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
+    Android13BaseAppTheme(
+        darkTheme = darkTheme,
+        dynamicColor = dynamicColor,
+        typography = Typography,
+        content = content
+    )
+}
+
+@Composable
+fun AndroidViewInheritTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    val context = LocalContext.current
+    val fontFamilyResId = context.queryFontFamilyAttrResId()
+    val fontFamilyName = context.queryFontFamilyName()
+    val fontFamily = if (fontFamilyResId != null) {
+        FontFamily(Font(fontFamilyResId))
+    } else if (fontFamilyName != null) {
+        FontFamily(Font(familyName = DeviceFontFamilyName(name = fontFamilyName)))
+    } else {
+        null
+    }
+    val typography = if (fontFamily != null) {
+        androidx.compose.material3.Typography(
+            displayLarge = Typography.displayLarge.copy(fontFamily = fontFamily),
+            displayMedium = Typography.displayMedium.copy(fontFamily = fontFamily),
+            displaySmall = Typography.displaySmall.copy(fontFamily = fontFamily),
+            headlineLarge = Typography.headlineLarge.copy(fontFamily = fontFamily),
+            headlineMedium = Typography.headlineMedium.copy(fontFamily = fontFamily),
+            headlineSmall = Typography.headlineSmall.copy(fontFamily = fontFamily),
+            titleLarge = Typography.titleLarge.copy(fontFamily = fontFamily),
+            titleMedium = Typography.titleMedium.copy(fontFamily = fontFamily),
+            titleSmall = Typography.titleSmall.copy(fontFamily = fontFamily),
+            bodyLarge = Typography.bodyLarge.copy(fontFamily = fontFamily),
+            bodyMedium = Typography.bodyMedium.copy(fontFamily = fontFamily),
+            bodySmall = Typography.bodySmall.copy(fontFamily = fontFamily),
+        )
+    } else {
+        Typography
+    }
+
+    Android13BaseAppTheme(
+        darkTheme = darkTheme,
+        dynamicColor = dynamicColor,
+        typography = typography,
+        content = content
+    )
+}
+
+@Composable
+private fun Android13BaseAppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
+    typography: androidx.compose.material3.Typography,
+    content: @Composable () -> Unit
+) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+        dynamicColor -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
@@ -52,7 +102,7 @@ fun Android13AppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = typography,
         content = content
     )
 }

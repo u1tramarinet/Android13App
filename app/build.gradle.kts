@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.car.ui.lib)
     implementation(libs.navigation.compose)
     implementation(libs.accompanist.navigation.animation)
+    implementation(libs.accompanist.permissions)
     testImplementation(libs.junit)
     testImplementation(libs.truth)
     androidTestImplementation(libs.androidx.junit)

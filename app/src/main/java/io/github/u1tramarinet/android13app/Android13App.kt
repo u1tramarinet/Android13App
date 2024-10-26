@@ -17,6 +17,8 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreen
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreenUiAction
+import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreen
+import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreen
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenUiAction
 
@@ -87,6 +89,15 @@ fun Android13App(
                 ),
             )
         }
+        composable(Android13AppRoute.NotificationSample.route) {
+            NotificationSampleScreen(
+                uiAction = NotificationSampleScreenUiAction(
+                    onBackClick = {
+                        navController.popBackStack()
+                    }
+                ),
+            )
+        }
     }
 }
 
@@ -94,4 +105,6 @@ sealed class Android13AppRoute(val route: String) {
     object Top : Android13AppRoute("top")
 
     object WidgetSample : Android13AppRoute("widget_sample")
+
+    object NotificationSample : Android13AppRoute("notification_sample")
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ private fun MainScreenContent(
     modifier: Modifier = Modifier,
     uiAction: MainScreenUiAction = MainScreenUiAction(),
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.padding(16.dp)) {
         Box(
             modifier = Modifier
                 .clickable {
@@ -36,6 +37,17 @@ private fun MainScreenContent(
                 .padding(32.dp),
         ) {
             Text(text = "Widget Sample", color = Color.White)
+        }
+        Divider()
+        Box(
+            modifier = Modifier
+                .clickable {
+                    uiAction.onItemClick(Android13AppRoute.NotificationSample)
+                }
+                .fillMaxWidth()
+                .padding(32.dp),
+        ) {
+            Text(text = "Notification Sample", color = Color.White)
         }
     }
 }

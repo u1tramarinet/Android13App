@@ -1,30 +1,41 @@
 package io.github.u1tramarinet.android13app.ui.screen.main
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.u1tramarinet.android13app.ui.screen.compose.ComposeScreen
-import io.github.u1tramarinet.android13app.ui.screen.legacy.LegacyScreen
+import androidx.compose.ui.unit.dp
+import io.github.u1tramarinet.android13app.Android13AppRoute
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    MainScreenContent(modifier)
+fun MainScreen(modifier: Modifier = Modifier, uiAction: MainScreenUiAction) {
+    MainScreenContent(modifier, uiAction = uiAction)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun MainScreenContent(modifier: Modifier = Modifier) {
-    Row(modifier = modifier) {
-        Box(modifier = Modifier.weight(1f)) {
-            ComposeScreen(scrollState = rememberScrollState())
-        }
-        Box(modifier = Modifier.weight(1f)) {
-            LegacyScreen(scrollState = rememberScrollState())
+private fun MainScreenContent(
+    modifier: Modifier = Modifier,
+    uiAction: MainScreenUiAction = MainScreenUiAction(),
+) {
+    Column(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .clickable {
+                    uiAction.onItemClick(Android13AppRoute.WidgetSample)
+                }
+                .fillMaxWidth()
+                .padding(32.dp),
+        ) {
+            Text(text = "Widget Sample", color = Color.White)
         }
     }
 }

@@ -1,4 +1,4 @@
-package io.github.u1tramarinet.android13app.ui.screen.main
+package io.github.u1tramarinet.android13app.ui.screen.widgetsample
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SampleScreenScaffold(
+fun WidgetSampleScreenScaffold(
     modifier: Modifier = Modifier,
     title: String,
     checkBoxes: @Composable RowScope.(checkedIndices: List<Int>, onCheckedChange: (Int, Boolean) -> Unit) -> Unit,

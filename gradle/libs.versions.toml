@@ -15,6 +15,10 @@ composeBom = "2023.06.01"
 dependencyGuard = "0.5.0"
 truth = "1.1.3"
 car-ui-lib = "2.6.0"
+#noinspection GradleDependency
+navigation = "2.6.0"
+#noinspection GradleDependency
+accompanist-navigation-animation = "0.30.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +37,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 car-ui-lib = { group = "com.android.car.ui", name = "car-ui-lib", version.ref = "car-ui-lib" }
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist-navigation-animation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

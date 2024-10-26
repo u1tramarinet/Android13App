@@ -6,7 +6,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.u1tramarinet.android13app.ui.screen.main.SampleScreenScaffold
+import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenScaffold
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import io.github.u1tramarinet.android13app.ui.theme.AndroidViewInheritTheme
 import io.github.u1tramarinet.android13app.ui.widget.AndroidViewCheckBox
@@ -27,7 +27,7 @@ private fun LegacyScreenContent(
     scrollState: ScrollState = rememberScrollState(),
 ) {
     AndroidViewInheritTheme {
-        SampleScreenScaffold(
+        WidgetSampleScreenScaffold(
             modifier = modifier,
             title = "Android 13 App(Legacy)",
             checkBoxes = { checkedIndices, onCheckedChange ->

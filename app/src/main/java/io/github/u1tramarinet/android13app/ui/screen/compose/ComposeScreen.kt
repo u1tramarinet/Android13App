@@ -12,7 +12,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.u1tramarinet.android13app.ui.screen.main.SampleScreenScaffold
+import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenScaffold
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @Composable
@@ -26,7 +26,7 @@ private fun ComposeScreenContent(
     modifier: Modifier = Modifier,
     scrollState: ScrollState = rememberScrollState(),
 ) {
-    SampleScreenScaffold(
+    WidgetSampleScreenScaffold(
         modifier = modifier,
         title = "Android 13 App",
         checkBoxes = { checkedIndices, onCheckedChange ->

@@ -72,10 +72,13 @@ dependencyGuard {
     configuration("debugRuntimeClasspath") {
         tree = true
         allowedFilter = {
-            if (it.contains("test")) {
-                println("[test] $it")
-            }
             true
         }
+    }
+}
+
+afterEvaluate {
+    tasks.preBuild {
+        finalizedBy(tasks.dependencyGuardBaseline)
     }
 }

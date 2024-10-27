@@ -19,6 +19,8 @@ import androidx.navigation.navDeepLink
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import io.github.u1tramarinet.android13app.ui.screen.detail.DetailScreen
+import io.github.u1tramarinet.android13app.ui.screen.detail.DetailScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreen
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.nested.Android13AppNestedRoute
@@ -153,6 +155,16 @@ fun Android13App(
                 ),
             )
         }
+        composable(Android13AppRoute.Detail.route) {
+            DetailScreen(
+                uiAction = DetailScreenUiAction(
+                    onBackClick = {
+                        navController.popBackStack()
+                        navController.navigate(Android13AppRoute.NestedWithArg(destination = Android13AppNestedRoute.Nested3.route).route)
+                    }
+                ),
+            )
+        }
     }
 }
 
@@ -180,5 +192,10 @@ sealed class Android13AppRoute(
     class NestedWithArg(destination: String = "{destination}") : Android13AppRoute(
         "nested/$destination",
         deepLink = "app://android13app/nested/$destination",
+    )
+
+    object Detail : Android13AppRoute(
+        "detail",
+        deepLink = "app://android13app/detail",
     )
 }

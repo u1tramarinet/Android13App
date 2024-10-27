@@ -60,6 +60,17 @@ private fun MainScreenContent(
         ) {
             Text(text = "Nested", color = Color.White)
         }
+        Divider()
+        Box(
+            modifier = Modifier
+                .clickable {
+                    uiAction.onItemClick(Android13AppRoute.Detail)
+                }
+                .fillMaxWidth()
+                .padding(32.dp),
+        ) {
+            Text(text = "Detail", color = Color.White)
+        }
     }
 }
 

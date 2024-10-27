@@ -49,6 +49,17 @@ private fun MainScreenContent(
         ) {
             Text(text = "Notification Sample", color = Color.White)
         }
+        Divider()
+        Box(
+            modifier = Modifier
+                .clickable {
+                    uiAction.onItemClick(Android13AppRoute.Nested)
+                }
+                .fillMaxWidth()
+                .padding(32.dp),
+        ) {
+            Text(text = "Nested", color = Color.White)
+        }
     }
 }
 

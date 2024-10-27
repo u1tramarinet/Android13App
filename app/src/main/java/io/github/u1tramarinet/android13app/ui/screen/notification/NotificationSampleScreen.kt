@@ -29,7 +29,9 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import io.github.u1tramarinet.android13app.Android13AppRoute
 import io.github.u1tramarinet.android13app.NotificationService
+import io.github.u1tramarinet.android13app.ui.screen.nested.Android13AppNestedRoute
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -62,8 +64,17 @@ fun NotificationSampleScreen(
         onLaunchPermissionRequest = {
             permissions.launchPermissionRequest()
         },
-        onSendNotification = {
-            notificationService.showNotification("テストタイトル", "テストメッセージ")
+        onSendNotification = { route ->
+            val messageSuffix = if (route != null) {
+                " (${route.deepLink})"
+            } else {
+                ""
+            }
+            notificationService.showNotification(
+                "テストタイトル",
+                "テストメッセージ$messageSuffix",
+                route?.deepLink,
+            )
         },
         notificationChannels = notificationChannels,
         activeNotifications = activeNotifications
@@ -77,7 +88,7 @@ private fun NotificationSampleScreenContent(
     uiAction: NotificationSampleScreenUiAction = NotificationSampleScreenUiAction(),
     isPermissionGranted: Boolean = true,
     onLaunchPermissionRequest: () -> Unit = {},
-    onSendNotification: () -> Unit = {},
+    onSendNotification: (route: Android13AppRoute?) -> Unit = {},
     notificationChannels: List<NotificationChannel> = emptyList(),
     activeNotifications: List<StatusBarNotification> = emptyList(),
 ) {
@@ -112,10 +123,44 @@ private fun NotificationSampleScreenContent(
             }
             Spacer(modifier = Modifier.height(32.dp))
             Button(
-                onClick = onSendNotification,
+                onClick = {
+                    onSendNotification(null)
+                },
                 enabled = isPermissionGranted
             ) {
                 Text(text = "通知を送信する")
+            }
+            Button(
+                onClick = {
+                    onSendNotification(Android13AppRoute.WidgetSample)
+                },
+                enabled = isPermissionGranted
+            ) {
+                Text(text = "通知を送信する(WidgetSampleへ)")
+            }
+            Button(
+                onClick = {
+                    onSendNotification(Android13AppRoute.NotificationSample)
+                },
+                enabled = isPermissionGranted
+            ) {
+                Text(text = "通知を送信する(NotificationSampleへ)")
+            }
+            Button(
+                onClick = {
+                    onSendNotification(Android13AppRoute.Nested)
+                },
+                enabled = isPermissionGranted
+            ) {
+                Text(text = "通知を送信する(Nestedへ)")
+            }
+            Button(
+                onClick = {
+                    onSendNotification(Android13AppRoute.NestedWithArg(destination = Android13AppNestedRoute.Nested3.route))
+                },
+                enabled = isPermissionGranted
+            ) {
+                Text(text = "通知を送信する(Nested3へ)")
             }
             Spacer(modifier = Modifier.height(64.dp))
             Text(text = "通知チャンネル一覧")

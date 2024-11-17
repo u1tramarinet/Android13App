@@ -21,6 +21,7 @@ navigation = "2.6.0"
 accompanist-navigation-animation = "0.30.1"
 #noinspection GradleDependency
 accompanist-permissions = "0.30.1"
+robolectric = "4.13"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,7 @@ car-ui-lib = { group = "com.android.car.ui", name = "car-ui-lib", version.ref = 
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 accompanist-navigation-animation = { group = "com.google.accompanist", name = "accompanist-navigation-animation", version.ref = "accompanist-navigation-animation" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -11,10 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.u1tramarinet.android13app.Android13AppRoute
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
+import io.github.u1tramarinet.android13app.ui.widget.playSoundEffect
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, uiAction: MainScreenUiAction) {
@@ -27,10 +29,12 @@ private fun MainScreenContent(
     modifier: Modifier = Modifier,
     uiAction: MainScreenUiAction = MainScreenUiAction(),
 ) {
+    val context = LocalContext.current
     Column(modifier = modifier.padding(16.dp)) {
         Box(
             modifier = Modifier
                 .clickable {
+                    playSoundEffect(context, force = true)
                     uiAction.onItemClick(Android13AppRoute.WidgetSample)
                 }
                 .fillMaxWidth()
@@ -42,6 +46,7 @@ private fun MainScreenContent(
         Box(
             modifier = Modifier
                 .clickable {
+                    playSoundEffect(context, force = true)
                     uiAction.onItemClick(Android13AppRoute.NotificationSample)
                 }
                 .fillMaxWidth()
@@ -53,6 +58,7 @@ private fun MainScreenContent(
         Box(
             modifier = Modifier
                 .clickable {
+                    playSoundEffect(context, force = true)
                     uiAction.onItemClick(Android13AppRoute.Nested)
                 }
                 .fillMaxWidth()
@@ -64,12 +70,25 @@ private fun MainScreenContent(
         Box(
             modifier = Modifier
                 .clickable {
+                    playSoundEffect(context, force = true)
                     uiAction.onItemClick(Android13AppRoute.Detail)
                 }
                 .fillMaxWidth()
                 .padding(32.dp),
         ) {
             Text(text = "Detail", color = Color.White)
+        }
+        Divider()
+        Box(
+            modifier = Modifier
+                .clickable {
+                    playSoundEffect(context, force = true)
+                    uiAction.onItemClick(Android13AppRoute.SideNested)
+                }
+                .fillMaxWidth()
+                .padding(32.dp),
+        ) {
+            Text(text = "SideNested", color = Color.White)
         }
     }
 }

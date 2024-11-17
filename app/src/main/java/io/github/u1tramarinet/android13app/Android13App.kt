@@ -28,6 +28,8 @@ import io.github.u1tramarinet.android13app.ui.screen.nested.NestedScreen
 import io.github.u1tramarinet.android13app.ui.screen.nested.NestedScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreen
 import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreenUiAction
+import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreen
+import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreen
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenUiAction
 
@@ -165,6 +167,15 @@ fun Android13App(
                 ),
             )
         }
+        composable(Android13AppRoute.SideNested.route) {
+            SideNestedScreen(
+                uiAction = SideNestedScreenUiAction(
+                    onBackClick = {
+                        navController.popBackStack()
+                    }
+                ),
+            )
+        }
     }
 }
 
@@ -197,5 +208,10 @@ sealed class Android13AppRoute(
     object Detail : Android13AppRoute(
         "detail",
         deepLink = "app://android13app/detail",
+    )
+
+    object SideNested : Android13AppRoute(
+        "sideNested",
+        deepLink = "app://android13app/side_nested",
     )
 }

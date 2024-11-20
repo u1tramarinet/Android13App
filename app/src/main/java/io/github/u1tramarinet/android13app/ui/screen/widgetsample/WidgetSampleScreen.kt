@@ -15,6 +15,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.screen.compose.ComposeScreen
 import io.github.u1tramarinet.android13app.ui.screen.legacy.LegacyScreen
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
@@ -57,8 +58,8 @@ private fun WidgetSampleScreenContent(
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun WidgetSampleScreenPreview() {
+@LocalePreviews
+fun WidgetSampleScreenPreview() {
     Android13AppTheme {
         WidgetSampleScreenContent()
     }

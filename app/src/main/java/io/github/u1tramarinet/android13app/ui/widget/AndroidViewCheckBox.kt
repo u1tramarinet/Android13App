@@ -38,7 +38,7 @@ fun AndroidViewCheckBox(
 
 @Composable
 @Preview(showBackground = true)
-private fun AndroidViewCheckBoxPreview() {
+fun AndroidViewCheckBoxPreview() {
     AndroidViewInheritTheme {
         Row(
             modifier = Modifier.padding(16.dp),

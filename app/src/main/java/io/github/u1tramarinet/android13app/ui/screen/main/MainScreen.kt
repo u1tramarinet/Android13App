@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.u1tramarinet.android13app.Android13AppRoute
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import io.github.u1tramarinet.android13app.ui.widget.playSoundEffect
 
@@ -94,8 +95,8 @@ private fun MainScreenContent(
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun MainScreenPreview() {
+@LocalePreviews
+fun MainScreenPreview() {
     Android13AppTheme {
         MainScreenContent()
     }

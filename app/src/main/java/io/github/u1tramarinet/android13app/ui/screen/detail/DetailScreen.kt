@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
+import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @Composable
 fun DetailScreen(modifier: Modifier = Modifier, uiAction: DetailScreenUiAction) {
@@ -42,5 +44,13 @@ private fun DetailScreenContent(
         Column(modifier = Modifier.padding(innerPadding)) {
 
         }
+    }
+}
+
+@Composable
+@LocalePreviews
+fun DetailScreenPreview() {
+    Android13AppTheme {
+        DetailScreenContent()
     }
 }

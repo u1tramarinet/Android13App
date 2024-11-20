@@ -38,7 +38,7 @@ fun AndroidViewSwitch(
 
 @Composable
 @Preview(showBackground = true)
-private fun AndroidViewSwitchPreview() {
+fun AndroidViewSwitchPreview() {
     AndroidViewInheritTheme {
         Row(
             modifier = Modifier.padding(16.dp),

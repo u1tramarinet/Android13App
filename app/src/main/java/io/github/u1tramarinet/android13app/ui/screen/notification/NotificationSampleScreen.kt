@@ -31,6 +31,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import io.github.u1tramarinet.android13app.Android13AppRoute
 import io.github.u1tramarinet.android13app.NotificationService
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.screen.nested.Android13AppNestedRoute
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
@@ -177,8 +178,8 @@ private fun NotificationSampleScreenContent(
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun NotificationSampleScreenPreview() {
+@LocalePreviews
+fun NotificationSampleScreenPreview() {
     Android13AppTheme {
         NotificationSampleScreenContent()
     }

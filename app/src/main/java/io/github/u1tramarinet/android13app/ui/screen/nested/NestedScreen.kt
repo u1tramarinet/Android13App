@@ -22,6 +22,8 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
+import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -149,5 +151,17 @@ sealed class Android13AppNestedRoute(
                 it.route == path
             } ?: Nested1
         }
+    }
+}
+
+@Composable
+@LocalePreviews
+fun NestedScreenPreview() {
+    Android13AppTheme {
+        NestedScreenContent(
+            route = Android13AppNestedRoute.Nested1,
+            uiAction = NestedScreenUiAction(),
+            onItemClick = { },
+        )
     }
 }

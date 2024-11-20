@@ -12,6 +12,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenScaffold
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
@@ -89,8 +90,8 @@ private fun ComposeScreenContent(
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun ComposeScreenPreview() {
+@LocalePreviews
+fun ComposeScreenPreview() {
     Android13AppTheme {
         ComposeScreenContent()
     }

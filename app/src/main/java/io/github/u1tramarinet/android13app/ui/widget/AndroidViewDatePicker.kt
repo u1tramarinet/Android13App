@@ -26,7 +26,7 @@ fun AndroidViewDatePicker(modifier: Modifier = Modifier) {
 
 @Composable
 @Preview(showBackground = true)
-private fun AndroidViewDatePickerPreview() {
+fun AndroidViewDatePickerPreview() {
     AndroidViewInheritTheme {
         AndroidViewDatePicker()
     }

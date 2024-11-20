@@ -38,7 +38,7 @@ fun AndroidViewRadioButton(
 
 @Composable
 @Preview(showBackground = true)
-private fun AndroidViewRadioButtonPreview() {
+fun AndroidViewRadioButtonPreview() {
     AndroidViewInheritTheme {
         Row(
             modifier = Modifier.padding(16.dp),

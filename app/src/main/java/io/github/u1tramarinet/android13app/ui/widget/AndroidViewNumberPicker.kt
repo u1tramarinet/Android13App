@@ -24,7 +24,7 @@ fun AndroidViewNumberPicker(modifier: Modifier = Modifier) {
 
 @Composable
 @Preview(showBackground = true)
-private fun AndroidViewNumberPickerPreview() {
+fun AndroidViewNumberPickerPreview() {
     AndroidViewInheritTheme {
         AndroidViewNumberPicker()
     }

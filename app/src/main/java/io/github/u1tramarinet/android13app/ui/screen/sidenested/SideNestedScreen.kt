@@ -2,7 +2,6 @@ package io.github.u1tramarinet.android13app.ui.screen.sidenested
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,7 +19,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +27,8 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
+import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -48,7 +48,9 @@ fun SideNestedScreen(
         }
     )
     Row(modifier = modifier) {
-        Column (modifier = Modifier.weight(0.3f).fillMaxHeight()) {
+        Column(modifier = Modifier
+            .weight(0.3f)
+            .fillMaxHeight()) {
             Text(
                 modifier = Modifier.padding(16.dp),
                 color = Color.White,
@@ -202,5 +204,19 @@ sealed class Android13AppSideNestedRoute(
                 it.route == path
             } ?: SideNested1
         }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class)
+@Composable
+@LocalePreviews
+fun NestedScreenPreview() {
+    Android13AppTheme {
+        SideNestedScreenContent(
+            route = Android13AppSideNestedRoute.SideNested1,
+            uiAction = SideNestedScreenUiAction(),
+            onItemClick = { },
+            navController = rememberAnimatedNavController(),
+        )
     }
 }

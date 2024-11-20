@@ -6,6 +6,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenScaffold
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import io.github.u1tramarinet.android13app.ui.theme.AndroidViewInheritTheme
@@ -84,8 +85,8 @@ private fun LegacyScreenContent(
 }
 
 @Composable
-@Preview(showBackground = true)
-private fun LegacyScreenPreview() {
+@LocalePreviews
+fun LegacyScreenPreview() {
     Android13AppTheme {
         LegacyScreenContent()
     }

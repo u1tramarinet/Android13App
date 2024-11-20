@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android13App"
 include(":app")
- 
+include(":benchmark")

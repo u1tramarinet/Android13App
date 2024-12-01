@@ -21,6 +21,7 @@ import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import io.github.u1tramarinet.android13app.ui.screen.detail.DetailScreen
 import io.github.u1tramarinet.android13app.ui.screen.detail.DetailScreenUiAction
+import io.github.u1tramarinet.android13app.ui.screen.list.ListScreen
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreen
 import io.github.u1tramarinet.android13app.ui.screen.main.MainScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.nested.Android13AppNestedRoute
@@ -28,6 +29,7 @@ import io.github.u1tramarinet.android13app.ui.screen.nested.NestedScreen
 import io.github.u1tramarinet.android13app.ui.screen.nested.NestedScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreen
 import io.github.u1tramarinet.android13app.ui.screen.notification.NotificationSampleScreenUiAction
+import io.github.u1tramarinet.android13app.ui.screen.repeat.RepeatScreen
 import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreen
 import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreen
@@ -176,6 +178,18 @@ fun Android13App(
                 ),
             )
         }
+
+        composable(Android13AppRoute.Repeat.route) {
+            RepeatScreen {
+                navController.popBackStack()
+            }
+        }
+
+        composable(Android13AppRoute.List.route) {
+            ListScreen {
+                navController.popBackStack()
+            }
+        }
     }
 }
 
@@ -213,5 +227,15 @@ sealed class Android13AppRoute(
     object SideNested : Android13AppRoute(
         "sideNested",
         deepLink = "app://android13app/side_nested",
+    )
+
+    object Repeat : Android13AppRoute(
+        "repeat",
+        deepLink = "app://android13app/repeat",
+    )
+
+    object List : Android13AppRoute(
+        "list",
+        deepLink = "app://android13app/list",
     )
 }

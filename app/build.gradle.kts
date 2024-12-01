@@ -110,3 +110,7 @@ afterEvaluate {
         finalizedBy(tasks.dependencyGuardBaseline)
     }
 }
+
+ksp {
+    arg("skipPrivatePreviews", "true")
+}

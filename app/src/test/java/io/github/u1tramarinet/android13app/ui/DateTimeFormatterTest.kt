@@ -2,7 +2,9 @@ package io.github.u1tramarinet.android13app.ui
 
 import org.junit.Test
 import java.time.LocalDate
+import java.time.chrono.IsoChronology
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
 import java.time.format.FormatStyle
 import java.util.Locale
 
@@ -80,6 +82,9 @@ class DateTimeFormatterTest {
 
         val best = getBestDateFormatter(locale).format(dateTime)
         println("best=$yearVal/$monthVal/$dayVal->$best")
+
+        val format = DateTimeFormatterBuilder.getLocalizedDateTimePattern(FormatStyle.SHORT, FormatStyle.SHORT, IsoChronology.INSTANCE, locale)
+        println("format=$format")
 
         println()
     }

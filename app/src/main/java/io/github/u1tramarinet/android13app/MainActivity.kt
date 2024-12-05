@@ -1,5 +1,6 @@
 package io.github.u1tramarinet.android13app
 
+import android.media.RingtoneManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -7,6 +8,7 @@ import androidx.activity.compose.setContent
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
+import java.io.File
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,10 +16,20 @@ class MainActivity : ComponentActivity() {
         val fontFamilyResId = this.queryFontFamilyAttrResId()
         val fontFamilyName = this.queryFontFamilyName()
         Log.d("MainActivity", "fontFamilyResId: $fontFamilyResId, fontFamilyName: $fontFamilyName")
+        val file = File("/")
+        Log.d("MainActivity", "file=$file exists=${file.exists()}")
         setContent {
             Android13AppTheme {
                 Android13App()
             }
         }
+        playNotification()
+    }
+
+    private fun playNotification() {
+        Log.d("MainActivity", "playNotification")
+        val n = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val r = RingtoneManager.getRingtone(this, n)
+        r.play()
     }
 }

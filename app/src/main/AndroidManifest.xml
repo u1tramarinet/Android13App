@@ -28,6 +28,15 @@
             android:exported="true"
             tools:ignore="ExportedService" />
 
+        <receiver
+            android:name=".LocaleChangeBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

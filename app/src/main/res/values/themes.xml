@@ -3,5 +3,6 @@
 
     <style name="Theme.Android13App" parent="Theme.CarUi.NoToolbar" >
         <item name="android:fontFamily">monospace</item>
+        <item name="android:soundEffectsEnabled">true</item>
     </style>
 </resources>

@@ -39,6 +39,7 @@ class NotificationService(private val context: Context, private val listener: Li
             .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
+            .setOnlyAlertOnce(true)
             .build()
         manager.notify(id, notification)
 

@@ -95,7 +95,7 @@ fun Android13App(
                     onItemClick = {
                         navController.navigate(it.route)
                     },
-                )
+                ),
             )
         }
         composable(

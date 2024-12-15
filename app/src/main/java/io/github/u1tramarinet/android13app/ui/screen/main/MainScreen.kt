@@ -18,10 +18,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import io.github.u1tramarinet.android13app.Android13AppRoute
+import io.github.u1tramarinet.android13app.R
 import io.github.u1tramarinet.android13app.ui.LocalePreviews
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import io.github.u1tramarinet.android13app.ui.widget.playSoundEffect
-import io.github.u1tramarinet.android13app.R
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, uiAction: MainScreenUiAction) {

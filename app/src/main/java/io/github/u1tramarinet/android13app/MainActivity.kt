@@ -23,12 +23,17 @@ class MainActivity : ComponentActivity() {
         // file=/
 
         val file1 = Environment.getExternalStorageDirectory()
-        Log.d("MainActivity", "file=$file1 exists=${file1.exists()}")
+        Log.d("MainActivity", "file1=$file1 exists=${file1.exists()}")
         // file=/storage/emulated/10
 
         val file2 = File("/product/")
-        Log.d("MainActivity", "file=$file2 exists=${file2.exists()}")
+        Log.d("MainActivity", "file2=$file2 exists=${file2.exists()}")
         // file=/product
+
+        val file3 = File("/hoge")
+        Log.d("MainActivity", "file3=$file3 exists=${file3.exists()}")
+        file3.mkdir()
+        Log.d("MainActivity", "file3=$file3 exists=${file3.exists()}")
 
         setContent {
             Android13AppTheme {

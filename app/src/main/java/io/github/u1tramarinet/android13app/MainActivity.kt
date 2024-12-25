@@ -10,6 +10,7 @@ import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import java.io.File
+import kotlin.io.path.createDirectory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +55,7 @@ class MainActivity : ComponentActivity() {
 
         val file1 = Environment.getExternalStorageDirectory()
         Log.d("MainActivity", "file1=$file1 exists=${file1.exists()}")
-        // file=/storage/emulated/10
+        // file=/storage/emulated/10 (data/media/10/Download)
 
         val file12 = File(file1, "hoge")
         Log.d("MainActivity", "file12=$file12 exists=${file12.exists()}")
@@ -79,5 +80,10 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "file4=$file4 exists=${file4.exists()}")
         file4.createNewFile()
         Log.d("MainActivity", "file4=$file4 exists=${file4.exists()}")
+        downloadFile.toPath().resolve("test3").toFile().createNewFile()
+
+        downloadFile.listFiles()?.forEach {file ->
+            Log.d("MainActivity", "file=${file.path} (isDirectory=${file.isDirectory})")
+        }
     }
 }

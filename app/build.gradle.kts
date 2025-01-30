@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.dependency.guard)
     alias(libs.plugins.ksp)
     alias(libs.plugins.roborazzi)
+    id("jacoco")
 }
 
 android {

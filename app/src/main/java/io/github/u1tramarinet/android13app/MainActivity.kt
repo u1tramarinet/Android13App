@@ -10,7 +10,6 @@ import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
 import java.io.File
-import kotlin.io.path.createDirectory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +81,7 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "file4=$file4 exists=${file4.exists()}")
         downloadFile.toPath().resolve("test3").toFile().createNewFile()
 
-        downloadFile.listFiles()?.forEach {file ->
+        downloadFile.listFiles()?.forEach { file ->
             Log.d("MainActivity", "file=${file.path} (isDirectory=${file.isDirectory})")
         }
     }

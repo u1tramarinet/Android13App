@@ -1,5 +1,6 @@
 package io.github.u1tramarinet.android13app
 
+import android.content.Intent
 import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.EaseIn
@@ -11,6 +12,9 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -34,6 +38,8 @@ import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreen
 import io.github.u1tramarinet.android13app.ui.screen.sidenested.SideNestedScreenUiAction
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreen
 import io.github.u1tramarinet.android13app.ui.screen.widgetsample.WidgetSampleScreenUiAction
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
 
 @Suppress("DEPRECATION")
 @OptIn(ExperimentalAnimationApi::class)
@@ -43,6 +49,30 @@ fun Android13App(
     navController: NavHostController = rememberAnimatedNavController(),
     startDestination: Android13AppRoute = Android13AppRoute.Top,
 ) {
+    var clearBackStackOnResume by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            Log.d("Android13App", "onDestinationChanged(${destination.route})")
+            if (clearBackStackOnResume) {
+                Log.d("Android13App", "onDestinationChanged: clearBackStackOnResume = true")
+                if (destination.route != startDestination.route) {
+                    navController.popBackStack(
+                        route = startDestination.route,
+                        inclusive = false,
+                    )
+                    clearBackStackOnResume = false
+                }
+            }
+        }
+    }
+
+    val currentActivity = (navController.context as? MainActivity)
+    if (currentActivity?.intent?.flags == Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) {
+        Log.d("Android13App", "clearBackStackOnResume = true")
+        clearBackStackOnResume = true
+    }
+
     AnimatedNavHost(
         modifier = modifier,
         navController = navController,

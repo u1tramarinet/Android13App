@@ -1,5 +1,6 @@
 package io.github.u1tramarinet.android13app
 
+import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Bundle
 import android.os.Environment
@@ -22,6 +23,13 @@ class MainActivity : ComponentActivity() {
         playNotification()
         testFontFamily()
         testStorage()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent?.flags == Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) {
+            Log.d("MainActivity", "onNewIntent: FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY")
+        }
     }
 
     private fun playNotification() {
@@ -84,5 +92,9 @@ class MainActivity : ComponentActivity() {
         downloadFile.listFiles()?.forEach { file ->
             Log.d("MainActivity", "file=${file.path} (isDirectory=${file.isDirectory})")
         }
+
+        Log.d("MainActivity", "downloadFile=$downloadFile exists=${downloadFile.exists()}")
+        val file5 = File(downloadFile, "full-r8-config.txt")
+        Log.d("MainActivity", "file5=$file5 exists=${file5.exists()}")
     }
 }

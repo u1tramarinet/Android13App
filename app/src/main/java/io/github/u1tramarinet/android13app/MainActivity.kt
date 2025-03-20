@@ -1,12 +1,16 @@
 package io.github.u1tramarinet.android13app
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.media.RingtoneManager
 import android.os.Bundle
 import android.os.Environment
+import android.os.IBinder
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import io.github.u1tramarinet.android13app.service.FacadeService
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyAttrResId
 import io.github.u1tramarinet.android13app.ui.queryFontFamilyName
 import io.github.u1tramarinet.android13app.ui.theme.Android13AppTheme
@@ -23,6 +27,7 @@ class MainActivity : ComponentActivity() {
         playNotification()
         testFontFamily()
         testStorage()
+        testService()
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -96,5 +101,37 @@ class MainActivity : ComponentActivity() {
         Log.d("MainActivity", "downloadFile=$downloadFile exists=${downloadFile.exists()}")
         val file5 = File(downloadFile, "full-r8-config.txt")
         Log.d("MainActivity", "file5=$file5 exists=${file5.exists()}")
+    }
+
+    private fun testService() {
+        val intent = Intent(this, FacadeService::class.java)
+        val serviceConnection = object :ServiceConnection {
+            override fun onServiceConnected(
+                name: ComponentName?,
+                service: IBinder?
+            ) {
+                Log.d("MainActivity", "onServiceConnected1")
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE)
+        val serviceConnection2 = object :ServiceConnection {
+            override fun onServiceConnected(
+                name: ComponentName?,
+                service: IBinder?
+            ) {
+                Log.d("MainActivity", "onServiceConnected2")
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        bindService(intent, serviceConnection2, BIND_AUTO_CREATE)
     }
 }

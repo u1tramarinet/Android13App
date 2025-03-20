@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.os.RemoteException
+import android.util.Log
 
 class FacadeService : Service() {
     private val callbacks = mutableSetOf<IBinderCallback>()
@@ -40,7 +41,12 @@ class FacadeService : Service() {
         doBind()
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     override fun onBind(intent: Intent): IBinder? {
+        Log.d("FacadeService", "onBind")
         return object : IFacadeService.Stub() {
             override fun getRemoteBinder(): IBinder? {
                 return remoteServiceBinder
@@ -50,6 +56,10 @@ class FacadeService : Service() {
                 callback?.let { callbacks.add(it) }
             }
         }
+    }
+
+    override fun onRebind(intent: Intent?) {
+        super.onRebind(intent)
     }
 
     override fun onDestroy() {
